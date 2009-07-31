@@ -25,6 +25,8 @@
         _requestType = requestType;
         _responseType = responseType;
 		_URL = [[request URL] retain];
+		
+		_download = [[TCDownload alloc] initWithURL:_URL];
     }
     
     return self;
@@ -92,31 +94,11 @@
 {
     NSString *description = [super description];
     
-    switch (_requestType) {
-        case MGTwitterStatusesRequest:
-            description = @"Twitter statuses timeline request";
-            break;
-        case MGTwitterDirectMessagesRequest:
-            description = @"Twitter direct messages timeline request";
-            break;
-        case MGTwitterAccountRequest:
-            description = @"Twitter account action request";
-            break;
-        case MGTwitterUserInfoRequest:
-            description = @"Twitter user information request";
-            break;
-        case MGTwitterStatusSend:
-            description = @"Twitter status send";
-            break;
-        case MGTwitterDirectMessageSend:
-            description = @"Twitter direct message send";
-            break;
-        default:
-            description = @"Twitter other action";
-            break;
-    }
-    
-    return [description stringByAppendingFormat:@" (%@)", _identifier];
+    return [description stringByAppendingFormat:@" (requestType = %d, identifier = %@)", _requestType, _identifier];
+}
+
+- (TCDownload *)download{
+	return _download;
 }
 
 
