@@ -70,4 +70,7 @@
 	#define LARGE_ID_TEST 0
 #endif
 
+#ifndef __MGTWITTERENGINEID__
+#define __MGTWITTERENGINEID__
 typedef unsigned long long MGTwitterEngineID;
+#endif 
